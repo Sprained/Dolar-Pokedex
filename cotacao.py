@@ -5,9 +5,9 @@ req = requests.get('https://economia.awesomeapi.com.br/all/USD-BRL')
 
 cotacao = req.json()
 print('Dolar: ' + cotacao['USD']['bid'])
-cotacaoString = str(cotacao['USD']['bid'])
-cotacaoString = cotacaoString.replace('.', '')
+cotacaoFloat = round(float(cotacao['USD']['bid']), 2)
+cotacaoString = str(cotacaoFloat).replace('.', '')
 
-poke = requests.get('https://pokeapi.co/api/v2/pokemon/' + cotacaoString[:-2])
+poke = requests.get('https://pokeapi.co/api/v2/pokemon/' + cotacaoString)
 pokedex = poke.json()
 print('O seu dolar pokemon é ' + pokedex['forms'][0]['name'])
